@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>App contador: {{ contador }}</h1>
+    <contador-uno></contador-uno>
+    <contador-accion></contador-accion>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ContadorAccion from './components/ContadorAccion'
+import ContadorUno from './components/ContadorUno'
+import { ref } from '@vue/reactivity'
+import { provide } from '@vue/runtime-core';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {
+    ContadorAccion,
+        ContadorUno,
+    },
+    setup() {
+        const contador = ref(0);
+
+        provide('contador', contador);
+
+        return { contador }
+    }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
